@@ -27,6 +27,7 @@ services:
       - WORDPRESS_PASSWORD=admin
       - WEB_SERVER_DAEMON_USER=${USER}
       - BITNAMI_DEBUG=true
+      - WORDPRESS_PLUGINS=https://github.com/rlewkowicz/livereload/archive/refs/tags/1.0.zip
 
   mariadb:
     image: docker.io/bitnami/mariadb:10.3
