@@ -32,7 +32,7 @@ services:
     image: docker.io/bitnami/mariadb:10.3
     container_name: mariadb
     volumes:
-      - 'mariadb_data:/bitnami/mariadb'
+      - 'mariadb:/bitnami/mariadb'
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - MARIADB_USER=bn_wordpress
@@ -43,11 +43,13 @@ services:
       context: .
       dockerfile: grunt.dockerfile
     container_name: grunt
+    ports: 
+      - 35729:35729
     volumes:
-      - 'wordpress:/wordpress'
+      - './wordpress:/wordpress'
 
 volumes:
-  mariadb_data:
+  mariadb:
     driver: local
     driver_opts:
       type: none

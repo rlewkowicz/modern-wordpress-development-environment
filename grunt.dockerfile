@@ -1,12 +1,13 @@
-FROM node:14-alpine3.14
+FROM node:14.17-slim
 
 WORKDIR /
 
-RUN npm -g install grunt
-RUN npm install grunt-contrib-watch grunt grunt-exec && wget https://github.com/sass/dart-sass/releases/download/1.37.5/dart-sass-1.37.5-linux-x64.tar.gz && \
+RUN apt update && apt install bash wget -y
+
+RUN npm -g install gulp
+RUN npm install gulp gulp-livereload && wget https://github.com/sass/dart-sass/releases/download/1.37.5/dart-sass-1.37.5-linux-x64.tar.gz && \
 tar -xzf dart-sass-1.37.5-linux-x64.tar.gz && mv dart-sass/sass /bin && rm -rf sass*
 
+COPY gulpfile.js /gulpfile.js
 
-COPY Gruntfile.js /Gruntfile.js
-
-ENTRYPOINT [ "grunt" ]
+ENTRYPOINT [ "gulp", "watch" ]
