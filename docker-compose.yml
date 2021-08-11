@@ -3,7 +3,7 @@ version: '3'
 services:
   wordpress:
     build:
-      context: .
+      context: ./buildfiles
       dockerfile: wordpress.dockerfile
       args:
         MY_USER: ${USER}
@@ -41,7 +41,7 @@ services:
 
   grunt:
     build:
-      context: .
+      context: ./buildfiles
       dockerfile: grunt.dockerfile
     container_name: grunt
     ports: 
