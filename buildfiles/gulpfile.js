@@ -14,7 +14,7 @@ function sass(cb) {
   }
 
 gulp.task('watch', function() {
-    livereload.listen();
+    livereload.listen(host='0.0.0.0');
     gulp.watch(['/wordpress/wp-content/themes/twentytwentyone/**/*.scss', '/wordpress/wp-content/themes/twentytwentyone/**/*.php'], {interval: 50, usePolling: true}, series(sass, lr));
   });
 

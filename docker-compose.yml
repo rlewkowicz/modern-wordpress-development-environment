@@ -18,6 +18,7 @@ services:
       - 80:8080
       - 433:8443
     environment: 
+      - PHP_ENABLE_OPCACHE=false
       - ALLOW_EMPTY_PASSWORD=yes
       - WORDPRESS_DATABASE_HOST=mariadb
       - WORDPRESS_DATABASE_PORT_NUMBER=3306
@@ -28,6 +29,7 @@ services:
       - WEB_SERVER_DAEMON_USER=${USER}
       - BITNAMI_DEBUG=true
       - WORDPRESS_PLUGINS=https://github.com/rlewkowicz/livereload/archive/refs/tags/1.0.zip
+      - WORDPRESS_ENABLE_HTACCESS_PERSISTENCE=true
 
   mariadb:
     image: docker.io/bitnami/mariadb:10.3
