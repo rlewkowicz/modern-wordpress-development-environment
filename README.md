@@ -9,7 +9,7 @@ mkdir -p wordpress mariadb; UID=$(id -u) docker-compose up -d --build --remove-o
 ### A Quick Test
 Open your browser to local host and then in a terminal:
 ```
-sed -i "s/flex-wrap: wrap;/background-color: red;/g" wordpress/wp-content/themes/twentytwentyone/assets/sass/06-components/header.scss 
+sed -i.bak -e "s/flex-wrap: wrap;/background-color: red;/g" wordpress/wp-content/themes/twentytwentyone/assets/sass/06-components/header.scss 
 ```
 
 The header should turn red.
