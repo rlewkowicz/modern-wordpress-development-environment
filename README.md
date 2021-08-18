@@ -1,4 +1,4 @@
-# A modern word press environment with livereload that actaully works
+# A modern word press environment with livereload that actually works
 TLDR (but you probably will want to modify the gulpfile at some point):
 ```
 git clone https://github.com/rlewkowicz/modern-wordpress-development-environment.git
