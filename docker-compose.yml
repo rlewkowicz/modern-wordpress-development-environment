@@ -34,6 +34,8 @@ services:
   mariadb:
     image: docker.io/bitnami/mariadb:10.3
     container_name: mariadb
+    ports: 
+      - 3306:3306
     volumes:
       - 'mariadb:/bitnami/mariadb'
     environment:
