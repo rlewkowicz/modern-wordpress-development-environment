@@ -1,4 +1,4 @@
-FROM bitnami/wordpress:5.7.2
+FROM bitnami/wordpress:6.7.1
 
 USER 0
 
@@ -7,7 +7,7 @@ ARG MY_UID
 
 RUN apt update && apt install parallel git -y
 
-RUN useradd -u $MY_UID $MY_USER && groupadd -g $MY_UID $MY_USER ; find / 2>/dev/null | grep scripts |  \
+RUN useradd -u $MY_UID $MY_USER; find / 2>/dev/null | grep scripts |  \
 xargs grep -RlE '\$(APACHE|WEB|PHP)[A-Z\_]+(USER|GROUP)' | sort | uniq | \
 xargs sed -E -i 's/\$(APACHE|WEB|PHP)[A-Z\_]+(USER|GROUP)/'$MY_USER'/g'
 

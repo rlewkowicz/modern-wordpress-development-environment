@@ -3,7 +3,8 @@ TLDR (but you probably will want to modify the gulpfile at some point):
 ```
 git clone https://github.com/rlewkowicz/modern-wordpress-development-environment.git
 cd modern-wordpress-development-environment
-mkdir -p wordpress mariadb; UID=$(id -u) docker-compose up -d --build --remove-orphans; while ! docker logs wordpress 2>&1 | grep -o "WordPress setup finished"; do sleep 1; done; echo "\nYour site should now be ready\n"
+export  MY_USER=$(whoami); export MY_UID=$(id -u)
+mkdir -p wordpress mariadb; docker-compose up -d --build --remove-orphans; while ! docker logs wordpress 2>&1 | grep -o "WordPress setup finished"; do sleep 1; done; echo "\nYour site should now be ready\n"
 ```
 
 ### A Quick Test

@@ -6,8 +6,8 @@ services:
       context: ./buildfiles
       dockerfile: wordpress.dockerfile
       args:
-        MY_USER: ${USER}
-        MY_UID: ${UID}
+        MY_USER: ${MY_USER}
+        MY_UID: ${MY_UID}
     container_name: wordpress
     volumes:
       - 'wordpress:/bitnami/wordpress'
@@ -26,7 +26,7 @@ services:
       - WORDPRESS_DATABASE_NAME=bitnami_wordpress
       - WORDPRESS_USERNAME=admin
       - WORDPRESS_PASSWORD=admin
-      - WEB_SERVER_DAEMON_USER=${USER}
+      - WEB_SERVER_DAEMON_USER=${MY_USER}
       - BITNAMI_DEBUG=true
       - WORDPRESS_PLUGINS=https://github.com/rlewkowicz/livereload/archive/refs/tags/1.0.zip
       - WORDPRESS_ENABLE_HTACCESS_PERSISTENCE=true
