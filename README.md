@@ -4,10 +4,11 @@ TLDR (but you probably will want to modify the gulpfile at some point):
 git clone https://github.com/rlewkowicz/modern-wordpress-development-environment.git
 cd modern-wordpress-development-environment
 export  MY_USER=$(whoami); export MY_UID=$(id -u)
-mkdir -p wordpress mariadb; docker-compose up -d --build --remove-orphans; while ! docker logs wordpress 2>&1 | grep -o "WordPress setup finished"; do sleep 1; done; echo "\nYour site should now be ready\n"
+mkdir -p wordpress mariadb; docker-compose up -d --build --remove-orphans --force-recreate; while ! docker logs wordpress 2>&1 | grep -o "WordPress setup finished"; do sleep 1; done; echo "\nYour site should now be ready\n" 
 ```
 
 ### A Quick Test
+> NOTE: The new versions of wp don't ship with scss base themes. [onepress](https://wordpress.org/themes/onepress/) isn't bad. This env works. [Local](https://localwp.com/) works out of the box, but I still like my dev env more. It's so easy to hack up a single page. I use export plugins and then migrate to localwp. Then use [simply static](https://simplystatic.com/) to export to gh-pages. Like the work flow a lot. 
 Open your browser to local host and then in a terminal:
 ```
 sed -i.bak -e "s/flex-wrap: wrap;/background-color: red;/g" wordpress/wp-content/themes/twentytwentyone/assets/sass/06-components/header.scss 
