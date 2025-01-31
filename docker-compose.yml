@@ -10,14 +10,14 @@ services:
         MY_UID: ${MY_UID}
     container_name: wordpress
     volumes:
-      - 'wordpress:/bitnami/wordpress'
+      - './wordpress:/bitnami/wordpress'
     depends_on:
       - mariadb
       - grunt
-    ports: 
-      - 80:8080
-      - 433:8443
-    environment: 
+    ports:
+      - '80:8080'
+      - '433:8443'
+    environment:
       - PHP_ENABLE_OPCACHE=false
       - ALLOW_EMPTY_PASSWORD=yes
       - WORDPRESS_DATABASE_HOST=mariadb
@@ -34,10 +34,11 @@ services:
   mariadb:
     image: docker.io/bitnami/mariadb:10.3
     container_name: mariadb
-    ports: 
-      - 3306:3306
+    ports:
+      - '3306:3306'
+    # Direct bind mount from host to container:
     volumes:
-      - 'mariadb:/bitnami/mariadb'
+      - './mariadb:/bitnami/mariadb'
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - MARIADB_USER=bn_wordpress
@@ -48,21 +49,7 @@ services:
       context: ./buildfiles
       dockerfile: grunt.dockerfile
     container_name: grunt
-    ports: 
-      - 35729:35729
+    ports:
+      - '35729:35729'
     volumes:
       - './wordpress:/wordpress'
-
-volumes:
-  mariadb:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./mariadb
-  wordpress:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./wordpress
